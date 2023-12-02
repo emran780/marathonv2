@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Oman Marathon Day{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Oman Marathon Day</h2>
+    <p>
+        Join us for a fantastic marathon experience in Muscat, Oman. Whether you're a seasoned
+        runner or just starting, we have something for everyone.
+    </p>
+    <p>
+        <strong>Event Dates:</strong> 7th to 9th November 2023<br>
+        <strong>Location:</strong> Sea Front, Muscat
+    </p>
+    <p>
+        Explore the types of runs we offer:
+        <ul>
+            <li>Kids' RUN</li>
+            <li>5KM RUN</li>
+            <li>10KM RUN</li>
+        </ul>
+    </p>
+    <p>
+        <a href="{% url 'login' %}">Login</a> to manage your registration or <a href="{% url 'about' %}">learn more</a> about the event.
+    </p>
+{% endblock %}

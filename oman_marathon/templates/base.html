@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Oman Marathon Day{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <!-- Add additional CSS or external CSS links as needed -->
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to Oman Marathon Day</h1>
+    </header>
+
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+                <!-- For Runners -->
+                <li><a href="{% url 'runner_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'welcome' %}">Welcome</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'past_events' %}">Past Events</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <!-- For Visitors -->
+                <li><a href="{% url 'welcome' %}">Welcome</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'past_events' %}">Past Events</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    
+
+
+
+    <section>
+        {% block content %}
+        <!-- Content of the specific page goes here -->
+        {% endblock %}
+    </section>
+
+    
+    
+    <footer>
+        <div class="social-media">
+            <a href="https://www.facebook.com/your-facebook-profile" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://twitter.com/your-twitter-profile" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://www.instagram.com/muscatmarathon/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <!-- Add more social media links as needed -->
+        </div>
+        <p>&copy; Mohammed Emran Uddin | 22084471</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <!-- Add additional JavaScript or external script links as needed -->
+</body>
+</html>

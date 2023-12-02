@@ -1,0 +1,15 @@
+<!-- view_runner.html -->
+
+{% extends 'base.html' %}
+{% block title %}View Runner{% endblock %}
+
+{% block content %}
+    <h2>View Runner</h2>
+
+    <p><strong>Biography:</strong> {{ runner.biography }}</p>
+    <p><strong>Healthy Condition:</strong> {{ runner.healthy_condition }}</p>
+    <p><strong>Nationality:</strong> {{ runner.nationality }}</p>
+    <p><strong>Chosen Run:</strong> {{ runner.chosen_run }}</p>
+
+    <a href="{% url 'runner_dashboard' %}">Back to Runner Dashboard</a>
+{% endblock %}

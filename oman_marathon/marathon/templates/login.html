@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form.as_p }} {# This line includes form fields for username and password #}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <p>Don't have an account? Contact us for registration.</p>
+    </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% comment %} <!-- marathon/templates/runner_dashboard.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Runner Dashboard - Oman Marathon Day{% endblock %}
+
+{% block content %}
+    <h2>Welcome to Your Runner Dashboard</h2>
+
+    <div>
+        <h3>Your Information</h3>
+        <p><strong>Name:</strong> {{ runner.name }}</p>
+        <p><strong>Email:</strong> {{ runner.email }}</p>
+        <p><strong>Biography:</strong> {{ runner.biography }}</p>
+        <p><strong>Healthy Condition:</strong> {{ runner.healthy_condition }}</p>
+        <p><strong>Nationality:</strong> {{ runner.nationality }}</p>
+        <!-- Add other fields as needed -->
+
+        <a href="{% url 'edit_runner_info' runner.id %}">Edit Your Information</a>
+        <a href="{% url 'delete_runner_info' runner.id %}">Delete Your Account</a>
+    </div>
+
+    <div>
+        <h3>Choose Your Run</h3>
+        <p><strong>Selected Run:</strong> {{ runner.selected_run }}</p>
+        <!-- Add other fields related to the chosen run -->
+
+        <a href="{% url 'edit_run_info' runner.id %}">Edit Your Run Choice</a>
+    </div>
+
+    <div>
+        <h3>Search</h3>
+        <form method="post" action="{% url 'search_runner' %}">
+            {% csrf_token %}
+            <label for="search_query">Search by Name:</label>
+            <input type="text" id="search_query" name="search_query" required>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <a href="{% url 'logout' %}">Logout</a>
+{% endblock %} {% endcomment %}
+
+
+
+{% comment %} {% block title %}Runner Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Here you can view and manage your runner's dashboard.</p>
+
+    <!-- Add your logic here to display and update runner's information -->
+
+    <ul>
+        <li><strong>Biography:</strong> {{ user.runner.biography }}</li>
+        <li><strong>Healthy Condition:</strong> {{ user.runner.healthy_condition }}</li>
+        <li><strong>Nationality:</strong> {{ user.runner.nationality }}</li>
+        <li><strong>Chosen Run:</strong> {{ user.runner.chosen_run }}</li>
+    </ul>
+
+    <!-- Add links or buttons for CRUD operations and logout -->
+    <a href="#">Edit My Information</a>
+    <!-- Add other links/buttons as needed -->
+
+    <a href="{% url 'logout' %}">Logout</a>
+{% endblock %} {% endcomment %}
+
+
+{% block title %}Runner Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Welcome, {{ user.username }}!</h2>
+    <p>Here you can view and manage your runner's dashboard.</p>
+
+    <form method="post" action="{% url 'runner_dashboard' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Information</button>
+    </form>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'create_runner' %}">Create New Runner</a>
+    <p>Other content goes here...</p>
+    <h3>Your Runners</h3>
+<ul>
+    {% for runner in runners %}
+        <li>
+            {{ runner.user.username }} - 
+            <a href="{% url 'view_runner' runner.id %}">View</a> | 
+            <a href="{% url 'delete_runner' runner.id %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
+
+

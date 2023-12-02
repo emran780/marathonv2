@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}User Actions - Oman Marathon Day{% endblock %}
+
+{% block content %}
+    <h2>User Actions</h2>
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <ul>
+            <li><a href="{% url 'add_run' %}">Add additional RUN</a></li>
+            <li><a href="{% url 'remove_run' %}">Remove registration on a particular RUN</a></li>
+            <li><a href="{% url 'run_details' %}">See registration on RUN details</a></li>
+            <li><a href="{% url 'update_details' %}">Update your details</a></li>
+        </ul>
+    {% else %}
+        <p>You need to <a href="{% url 'login' %}">login</a> to access user actions.</p>
+    {% endif %}
+{% endblock %}
